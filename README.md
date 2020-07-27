@@ -1,1 +1,2 @@
-# CSE360-MobileRobotics
+# CSE360/460 - MobileRobotics
+
