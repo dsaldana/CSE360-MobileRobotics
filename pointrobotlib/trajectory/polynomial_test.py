@@ -22,5 +22,5 @@ plt.show()
 
 
 i = 0
-print('poly 3 cofficients for x: ', poly3_coefficients(X[i], Vx[i], X[i + 1], Vx[i + 1], T[i+1]))
-print('poly 3 cofficients for y: ', poly3_coefficients(Y[i], Vy[i], Y[i + 1], Vy[i + 1], T[i+1]))
+print('poly 3 coefficients for x: ', poly3_coefficients(X[i], Vx[i], X[i + 1], Vx[i + 1], T[i+1]))
+print('poly 3 coefficients for y: ', poly3_coefficients(Y[i], Vy[i], Y[i + 1], Vy[i + 1], T[i+1]))
