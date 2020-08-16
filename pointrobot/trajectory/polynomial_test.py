@@ -1,7 +1,7 @@
 
 #
 import numpy as np
-from pointrobotlib.trajectory.polynomial import piecewise_2d, poly3_coefficients
+from pointrobot.trajectory.polynomial import piecewise_2d, poly3_coefficients
 import matplotlib.pyplot as plt
 
 X = [0, 8]
