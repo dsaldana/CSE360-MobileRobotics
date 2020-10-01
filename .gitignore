@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+/coppelia/remoteApi.so
+/coppelia/sim.py
+/coppelia/simConst.py
