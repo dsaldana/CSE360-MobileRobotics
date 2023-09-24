@@ -130,3 +130,6 @@ dmypy.json
 /coppelia/remoteApi.so
 /coppelia/sim.py
 /coppelia/simConst.py
+/blimp-robots/remoteApi.so
+/blimp-robots/sim.py
+/blimp-robots/simConst.py
