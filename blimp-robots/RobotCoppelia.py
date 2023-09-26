@@ -5,7 +5,7 @@ from numpy import array
 
 class Robot(object):
 
-    def __init__(self, frame_name, motor_names=[], client_id=0):
+    def __init__(self, frame_name, motor_names=[], sensor_names=[], client_id=0):
         # If there is an existing connection. Then open a connection
         if client_id:
             self.client_id = client_id
@@ -13,6 +13,7 @@ class Robot(object):
             self.client_id = self.open_connection()
 
         self.motors = self._get_handlers(motor_names)
+        self.sensors = self._get_handlers(sensor_names)
 
         # Robot frame
         self.frame = self._get_handler(frame_name)
@@ -107,6 +108,16 @@ class Robot(object):
 
     def set_float(self, f, signal='f'):
         return sim.simxSetFloatSignal(self.client_id, signal, f, sim.simx_opmode_oneshot)
+
+    def get_distances(self):
+        distances = []
+        for sensor in self.sensors:
+            result, inrange, point, object, surf_vector = sim.simxReadProximitySensor(self.client_id, sensor, sim.simx_opmode_continuous)
+            distances.append((inrange, np.linalg.norm(point)))
+        return distances
+
+
+
 
     def set_servo_forces(self, servo_angle1, servo_angle2, force_motor1, force_motor2):
         """

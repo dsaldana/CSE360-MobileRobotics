@@ -39,7 +39,7 @@ try:
         accum_ez += e_z
 
 
-        e_rz= rz_d - rz
+        e_rz = rz_d - rz
         torque_z = kp_z * e_rz
 
         # force to move forward
