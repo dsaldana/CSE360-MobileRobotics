@@ -7,7 +7,7 @@ from RobotCoppelia import Robot
 # Send force to a robot
 
 
-r = Robot('bicopterBody', sensor_names=["proximity_f", "proximity_r"])  # Create an instance of our robot
+r = Robot('bicopterBody', sensor_names=["proximity_1", "proximity_2"])  # Create an instance of our robot
 
 time_steps = 100
 
@@ -41,24 +41,25 @@ try:
         e_rz = rz_d - rz
         torque_z = kp_z * e_rz
 
-        (front_det, front_dist), (rear_det, rear_dist) = r.get_distances()
+        (det_1, dist_1), (det_2, dist_2) = r.get_distances()
 
         torque = 0  #
         rotate = radians(1.)
 
-        if front_det == True:
-            if rear_det == True:
+        if det_1:
+            if det_2:
                 # fx = 1.4
 
-                xf, yf = front_dist * cos(pi/6), front_dist * sin(pi/6)
-                xr, yr = rear_dist * cos(-pi / 6), rear_dist * sin(-pi / 6)
+                # Compute points in the body frame
+                x1, y1 = dist_1 * cos(pi / 6), dist_1 * sin(pi / 6)
+                x2, y2 = dist_2 * cos(-pi / 6), dist_2 * sin(-pi / 6)
 
                 # Line y=ax + b
-                a = (yf - yr) / (xf - xr)
-                b = yr - a * xr
-                b = (front_dist + rear_dist)/2
+                a = (y1 - y2) / (x1 - x2)
+                b = y2 - a * x2
+                b = (dist_1 + dist_2) / 2
                 # relative angle
-                ang = atan2(yf-yr, xf-xr)
+                ang = atan2(y1 - y2, x1 - x2)
                 # distance
 
                 # desired distance
@@ -78,7 +79,7 @@ try:
             else:
                 torque = rotate
         else:
-            if rear_det == True:
+            if det_2 == True:
                 fx = .1
                 torque = -rotate
             else:
