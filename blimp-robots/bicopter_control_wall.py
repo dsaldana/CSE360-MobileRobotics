@@ -79,7 +79,7 @@ try:
                 fx = .1
                 torque = -rotate
             else:
-                fx = 1.4
+                fx = 1.
 
 
         theta = atan2(fz, fx)  # Servo angle
